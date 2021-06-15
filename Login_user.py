@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 from playsound import playsound
-import multiprocessing
 
 # initialise the root
 window = Tk()
@@ -109,10 +108,5 @@ def lotto():
 # Buttons
 enter_button = tk.Button(window, text="Enter", command=lotto, height=2, width=10).place(x=280, y=500)
 exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10).place(x=490, y=500)
-
-
-def play():
-    playsound('sound2.mp3')
-prizes_button = tk.Button(window, text="Start", command=play, height=2, width=10).place(x=780, y=30)
 
 window.mainloop()

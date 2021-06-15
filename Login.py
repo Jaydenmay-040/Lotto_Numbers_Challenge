@@ -1,6 +1,10 @@
+import datetime
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
+from playsound import playsound
+import rsaidnumber
+from dateutil import relativedelta
 
 # initialise the root
 window = Tk()
@@ -27,16 +31,19 @@ age_label = Label(window, text="Age", bg="yellow", font=("Arial", 13))
 # Function to tells if user is older enough to play
 def enter():
     try:
-        if int(age_entry.get()) >= 18:
-            messagebox.showerror("You qualify", "Let's play" "\n" + first_name_entry.get() + "\n" + last_name_entry.get())
-
+        age = age_entry.get()
+        int(age_entry.get())
+        d_o_b = rsaidnumber.parse(age).date_of_birth
+        if len(age) > 13 or len(age) < 13:
+            raise ValueError
+        elif relativedelta.relativedelta(datetime.datetime.today(), d_o_b).years > 18:
+            messagebox.showinfo(message='Congrats! You can play.')
             window.destroy()
             import Login_user
-        elif int(age_entry.get()) < 18:
-            messagebox.showerror("You do not qualify", "Try again in a few years" "\n" + first_name_entry.get() + last_name_entry.get()
-                                 )
+        else:
+            messagebox.showerror(message='Sorry! You are underage.')
     except ValueError:
-        messagebox.showerror("Invalid", "Please enter your age")
+        messagebox.showerror(message='ID number either too long or too short')
 
 # Buttons
 enter_button = tk.Button(window, text="Enter", command=enter, height=2, width=10).place(x=280, y=500)
