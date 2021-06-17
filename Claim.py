@@ -35,15 +35,54 @@ bank_opt.place(x=630, y=300)
 
 # Function to tells if user is older enough to play
 def enter():
-    try:
-        name_ent = account_holder_name_entry.get()
-        str(account_holder_name_entry.get())
-        if type(name_ent) is str:
-            messagebox.showinfo(message='Details have been entered correctly.')
-        elif type(name_ent) is int:
-            raise ValueError
-    except ValueError:
-        messagebox.showerror(message='Something went wrong! Ensure that field is entered correctly')
+    # try:
+    #     list1 = ["1", "2", "3", "4", '5', "6", "7", "8", '9', "0"]
+    #     name_ent = account_holder_name_entry.get()
+    #     if name_ent == "":
+    #         raise ValueError
+    #     for x in name_ent:
+    #         if x in list1:
+    #             raise ValueError
+    #     messagebox.showinfo(message='Details have been entered correctly.')
+    # except ValueError:
+    #     messagebox.showerror(message='Something went wrong! Ensure that account holder name is entered correctly')
+    #
+    #     try:
+    #         number_ent = account_number_entry.get()
+    #         if number_ent == "":
+    #             raise ValueError
+    #         else:
+    #             int(account_number_entry.get())
+    #             messagebox.showinfo(message='Details have been entered correctly:)')
+    #     except ValueError:
+    #         messagebox.showerror(message='Something went wrong! Ensure that your account number is entered correctly')
+
+            try:
+                list1 = ["1", "2", "3", "4", '5', "6", "7", "8", '9', "0"]
+                name_ent = account_holder_name_entry.get()
+                number_ent = account_number_entry.get()
+                if name_ent == '':
+                    raise ValueError
+                elif name_ent in list1:
+                    raise ValueError
+                messagebox.showinfo(message='Details has been entered correctly ')
+                if number_ent == '':
+                    raise ValueError
+                else:
+                    int(account_number_entry.get())
+                    messagebox.showinfo(message='Details have been entered correctly:)')
+                if variable.get() == 'Select Bank':
+                    raise ValueError
+                elif variable.get() == 'FNB':
+                    messagebox.showinfo(message='Details have been entered correctly:)')
+                elif variable.get() == 'Capitec':
+                    messagebox.showinfo(message='Details have been entered correctly:)')
+                elif variable.get() == 'Netbank':
+                    messagebox.showinfo(message='Details have been entered correctly:)')
+                elif variable.get() == 'Standard Bank':
+                    messagebox.showinfo(message='Details have been entered correctly:)')
+            except ValueError:
+                messagebox.showerror(message='Something went wrong! Please ensure that fields are entered correctly')
 
 # Buttons
 enter_button = tk.Button(window, text="Enter", command=enter, height=2, width=10).place(x=280, y=500)

@@ -36,19 +36,31 @@ id_label.place(x=635, y=340)
 # Function to tells if user is older enough to play
 def enter():
     try:
+        first_name = first_name_entry.get()
+        last_name = last_name_entry.get()
         id_no = id_entry.get()
         int(id_entry.get())
         d_o_b = rsaidnumber.parse(id_no).date_of_birth
         if len(id_no) > 13 or len(id_no) < 13:
             raise ValueError
-        elif relativedelta.relativedelta(datetime.datetime.today(), d_o_b).years > 18:
+        elif relativedelta.relativedelta(datetime.datetime.today(), d_o_b).years >= 18:
             messagebox.showinfo(message='Congrats! You can play.')
             window.destroy()
             import Login_user
         else:
             messagebox.showerror(message='Sorry! You are underage.')
+        if first_name == '':
+            raise ValueError
+        elif last_name == '':
+            raise ValueError
+        pos = first_name.find(" ")
+        surname = last_name[pos+1]
+        sliced = id_entry.get
+        id_sliced = sliced[slice(6, 10, 1)]
+        id_player = surname+first_name+id_sliced
+        print("Hello: ", id_player)
     except ValueError:
-        messagebox.showerror(message='ID number either too long or too short')
+        messagebox.showerror(message='Please ensure that all fields are entered correctly')
 
 # Buttons
 enter_button = tk.Button(window, text="Enter", command=enter, height=2, width=10, bg="green").place(x=280, y=500)
@@ -56,8 +68,12 @@ exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, b
 
 
 def lotto_prizes():
-    window.destroy()
-    import Lotto_prizes
+    pos = first_name_entry
+    surname = last_name_entry[pos + 1]
+    sliced = id_entry.get
+    id_sliced = sliced[slice(6, 10, 1)]
+    id_player = surname + first_name_entry + id_sliced
+    print("Hello: ", id_player)
 
 prizes_button = tk.Button(window, text="Prizes", command=lotto_prizes, height=2, width=10, bg="#0696e0").place(x=780, y=30)
 
