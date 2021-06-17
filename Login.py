@@ -2,7 +2,6 @@ import datetime
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
-from playsound import playsound
 import rsaidnumber
 from dateutil import relativedelta
 
@@ -21,20 +20,26 @@ label = Label(window, text="Enter the following:", fg="black", bg="yellow", font
 
 # Entries
 first_name_entry = Entry(window)
+first_name_entry.place(x=180, y=300)
 first_name_label = Label(window, text="First Name", bg="yellow", font=("Arial", 13))
+first_name_label.place(x=215, y=340)
 last_name_entry = Entry(window)
+last_name_entry.place(x=380, y=300)
 last_name_label = Label(window, text="Last Name", bg="yellow", font=("Arial", 13))
-age_entry = Entry(window, width=10,)
-age_label = Label(window, text="Age", bg="yellow", font=("Arial", 13))
+last_name_label.place(x=418, y=340)
+id_entry = Entry(window)
+id_entry.place(x=580, y=300)
+id_label = Label(window, text="ID No.", bg="yellow", font=("Arial", 13))
+id_label.place(x=635, y=340)
 
 
 # Function to tells if user is older enough to play
 def enter():
     try:
-        age = age_entry.get()
-        int(age_entry.get())
-        d_o_b = rsaidnumber.parse(age).date_of_birth
-        if len(age) > 13 or len(age) < 13:
+        id_no = id_entry.get()
+        int(id_entry.get())
+        d_o_b = rsaidnumber.parse(id_no).date_of_birth
+        if len(id_no) > 13 or len(id_no) < 13:
             raise ValueError
         elif relativedelta.relativedelta(datetime.datetime.today(), d_o_b).years > 18:
             messagebox.showinfo(message='Congrats! You can play.')
@@ -46,21 +51,14 @@ def enter():
         messagebox.showerror(message='ID number either too long or too short')
 
 # Buttons
-enter_button = tk.Button(window, text="Enter", command=enter, height=2, width=10).place(x=280, y=500)
-exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10).place(x=490, y=500)
+enter_button = tk.Button(window, text="Enter", command=enter, height=2, width=10, bg="green").place(x=280, y=500)
+exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, bg="red").place(x=490, y=500)
 
 
 def lotto_prizes():
     window.destroy()
     import Lotto_prizes
-prizes_button = tk.Button(window, text="Prizes", command=lotto_prizes, height=2, width=10).place(x=780, y=30)
 
-first_name_entry.place(x=180, y=300)
-last_name_entry.place(x=400, y=300)
-age_entry.place(x=630, y=300)
-
-first_name_label.place(x=200, y=340)
-last_name_label.place(x=418, y=340)
-age_label.place(x=655, y=340)
+prizes_button = tk.Button(window, text="Prizes", command=lotto_prizes, height=2, width=10, bg="#0696e0").place(x=780, y=30)
 
 window.mainloop()

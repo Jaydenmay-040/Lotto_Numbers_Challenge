@@ -21,17 +21,17 @@ label = Label(window, text="Welcome!", fg="black", bg="yellow", font=("Arial", 2
 number_label = Label(window, text="Enter a set of numbers ranging from 1-49:", bg="yellow", font=("Arial", 16)).place(x=240, y=240)
 
 # Entries for user to enter numbers
-first_number_entry = Entry(window, width=6)
+first_number_entry = Spinbox(window, from_=0, to=49, width=6)
 first_number_entry.place(x=160, y=310)
-second_number_entry = Entry(window, width=6)
+second_number_entry = Spinbox(window, from_=0, to=49, width=6)
 second_number_entry.place(x=260, y=310)
-third_number_entry = Entry(window, width=6)
+third_number_entry = Spinbox(window, from_=0, to=49, width=6)
 third_number_entry.place(x=360, y=310)
-fourth_number_entry = Entry(window, width=6)
+fourth_number_entry = Spinbox(window, from_=0, to=49, width=6)
 fourth_number_entry.place(x=460, y=310)
-fifth_number_entry = Entry(window, width=6)
+fifth_number_entry = Spinbox(window, from_=0, to=49, width=6)
 fifth_number_entry.place(x=560, y=310)
-sixth_number_entry = Entry(window, width=6)
+sixth_number_entry = Spinbox(window, from_=0, to=49, width=6)
 sixth_number_entry.place(x=660, y=310)
 
 # Entries that display the Lotto draw and matching numbers
@@ -61,7 +61,7 @@ def lotto():
                 new_list.append(new_list[i])
             elif 49 < int(new_list[i]):
                 messagebox.showerror("Something went wrong", "Enter numbers from range 0 - 49")
-            lotto_draw_label = Label(window, text=lotto_numbers, bg="yellow")
+            lotto_draw_label = Label(window, text=lotto_numbers, bg="yellow", font=("Arial", 13))
             lotto_draw_label.place(x=300, y=375)
 
         # Stores the lists using set and compares the two
@@ -69,7 +69,7 @@ def lotto():
 
         # if statement that displays if there are any matching numbers and will be displayed in a list
         if new_list == new_list:
-            matching_numbers_label = Label(window, text=matching_numbers, bg="yellow")
+            matching_numbers_label = Label(window, text=matching_numbers, bg="yellow", font=("Arial", 13))
             matching_numbers_label.place(x=400, y=420)
             print(sorted(matching_numbers))
         else:
@@ -77,8 +77,8 @@ def lotto():
                 messagebox.showerror("Try again", "You have no matching numbers:(")
 
         if len(matching_numbers) == 0:
-            matched_label = Label(window, text="0", bg='white', width='10')
-            matched_label.place(x=550, y=420)
+            matched_label = Label(window, text="0", bg='yellow', width='10', font=("Arial", 13))
+            matched_label.place(x=450, y=420)
             messagebox.showerror("Try again", "You have no matching numbers:(")
 
         elif len(matching_numbers) == 1:
@@ -98,15 +98,41 @@ def lotto():
 
         elif len(matching_numbers) == 6:
             messagebox.showinfo("Congratulations Champ!!!!", "You won R10000000.00")
-            playsound('sound1.mp3')
-        window.destroy()
-        import Lotto_prizes
+            window.destroy()
+            import Lotto_prizes
 
     except ValueError:
         messagebox.showerror("Do you want to win??", "Then enter number!!")
 
 # Buttons
-enter_button = tk.Button(window, text="Enter", command=lotto, height=2, width=10).place(x=280, y=500)
-exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10).place(x=490, y=500)
+enter_button = tk.Button(window, text="Enter", command=lotto, height=2, width=10, bg="Green").place(x=260, y=500)
+
+
+def claims():
+    window.destroy()
+    import Claim
+
+claims_button = tk.Button(window, text="Claim Prize", command=claims, height=2, width=10, bg="#f649a2").place(x=400, y=500)
+
+
+def clear():
+    first_number_entry.delete(0, 'end')
+    second_number_entry.delete(0, 'end')
+    third_number_entry.delete(0, 'end')
+    fourth_number_entry.delete(0, 'end')
+    fifth_number_entry.delete(0, 'end')
+    sixth_number_entry.config(state="normal")
+    sixth_number_entry.delete(0, END)
+
+
+clear_button = tk.Button(window, text="Clear", command=clear, height=2, width=10, bg="#0696e0").place(x=540, y=500)
+exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, bg="Red").place(x=780, y=30)
+
+
+def try_again():
+    window.destroy()
+    import Login
+try_again_button = tk.Button(window, text="Try Again", command=try_again, height=2, width=10, bg="#cb2eba").place(x=10, y=30)
+
 
 window.mainloop()
