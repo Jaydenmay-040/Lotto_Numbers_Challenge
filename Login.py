@@ -20,27 +20,33 @@ label = Label(window, text="Enter the following:", fg="black", bg="yellow", font
 
 # Entries
 first_name_entry = Entry(window)
-first_name_entry.place(x=180, y=300)
+first_name_entry.place(x=410, y=280)
 first_name_label = Label(window, text="First Name", bg="yellow", font=("Arial", 13))
-first_name_label.place(x=215, y=340)
+first_name_label.place(x=250, y=280)
 last_name_entry = Entry(window)
-last_name_entry.place(x=380, y=300)
+last_name_entry.place(x=410, y=320)
 last_name_label = Label(window, text="Last Name", bg="yellow", font=("Arial", 13))
-last_name_label.place(x=418, y=340)
+last_name_label.place(x=250, y=320)
 id_entry = Entry(window)
-id_entry.place(x=580, y=300)
+id_entry.place(x=410, y=360)
 id_label = Label(window, text="ID No.", bg="yellow", font=("Arial", 13))
-id_label.place(x=635, y=340)
+id_label.place(x=250, y=360)
 
 
 # Function to tells if user is older enough to play
 def enter():
+    with open("Login_use.txt", "a+") as f:
+        f.write('Name: ' + first_name_entry.get() + '\n')
+        f.write('Surname: ' + last_name_entry.get() + '\n')
+        f.write('ID No.: ' + id_entry.get() + '\n')
     try:
         first_name = first_name_entry.get()
         last_name = last_name_entry.get()
         id_no = id_entry.get()
         int(id_entry.get())
         d_o_b = rsaidnumber.parse(id_no).date_of_birth
+        player_id = first_name[:3] + id_no[:6]
+        print(player_id)
         if len(id_no) > 13 or len(id_no) < 13:
             raise ValueError
         elif relativedelta.relativedelta(datetime.datetime.today(), d_o_b).years >= 18:
@@ -53,11 +59,6 @@ def enter():
             raise ValueError
         elif last_name == '':
             raise ValueError
-        import Login_use
-        with open('Login_use.txt') as file_object:
-            file_object.write('Name: ')
-            # file_object.write('Surname: ' + last_name_entry.get())
-            # file_object.write('ID No.: ' + id_entry.get())
     except ValueError:
         messagebox.showerror(message='Please ensure that all fields are entered correctly')
 

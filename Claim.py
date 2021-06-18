@@ -2,6 +2,7 @@ import datetime
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
+import requests
 
 # initialise the root
 window = Tk()
@@ -33,7 +34,19 @@ currency_entry = Entry(window)
 currency_entry.place(x=400, y=380)
 currency_label = Label(window, text="Enter currency code", bg="yellow", font=("Arial", 13))
 currency_label.place(x=170, y=380)
+email_entry = Entry(window)
+email_entry.place(x=400, y=420)
+email_label = Label(window, text="Email", bg="yellow", font=("Arial", 13))
+email_label.place(x=170, y=420)
 
+def currency_converter():
+    response = requests.get("https://v6.exchangerate-api.com/v6/f876d1e0093ad3e0efcfba54/latest/ZAR")
+    data = response.json()
+    with open("Login_use.txt", 'a') as file:
+        for line in file:
+            if "Prize" in line:
+                prize = line[8:-1]
+    total = prize * data["conversion_rates"][currency_entry.get()]
 
 
 # Function to tells if user is older enough to play

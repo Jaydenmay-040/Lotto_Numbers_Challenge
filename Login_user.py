@@ -58,7 +58,6 @@ def lotto():
         new_list = [int(first_number_entry.get()), int(second_number_entry.get()), int(third_number_entry.get()),
                      int(fourth_number_entry.get()),
                      int(fifth_number_entry.get()), int(sixth_number_entry.get())]
-
         # Takes the users numbers and puts it in a list, if the numbers are not between 1-49 it returns an error
         for i in range(6):
             if 0 <= int(new_list[i]) <= 49:
@@ -78,17 +77,25 @@ def lotto():
             print(sorted(matching_numbers))
         else:
             if new_list == 0:
+                with open("Login_use.txt", 'a') as file:
+                    file.write('Prize: R0')
                 messagebox.showerror("Try again", "You have no matching numbers:(")
 
         if len(matching_numbers) == 0:
+            with open("Login_use.txt", 'a') as file:
+                file.write('Prize: R0')
             matched_label = Label(window, text="0", bg='yellow', width='10', font=("Arial", 13))
             matched_label.place(x=450, y=420)
             messagebox.showerror("Try again", "You have no matching numbers:(")
 
         elif len(matching_numbers) == 1:
+            with open("Login_use.txt", 'a') as file:
+                file.write('Prize: R0')
             messagebox.showerror("Too bad", "You only have one matching number, better luck next time")
 
         elif len(matching_numbers) == 2:
+            with open("Login_use.txt", 'a') as file:
+                file.write('Prize: R20.00')
             messagebox.showinfo("Well Done!", "You won R20.00")
 
             def claims():
@@ -99,6 +106,8 @@ def lotto():
                                       bg="#f649a2").place(x=400, y=500)
 
         elif len(matching_numbers) == 3:
+            with open("Login_use.txt", 'a') as file:
+                file.write('Prize: R100.50')
             messagebox.showinfo("Well Done!!", "You won R100.50")
 
             def claims():
@@ -109,6 +118,8 @@ def lotto():
                                       bg="#f649a2").place(x=400, y=500)
 
         elif len(matching_numbers) == 4:
+            with open("Login_use.txt", 'a') as file:
+                file.write('Prize: R2 384.00')
             messagebox.showinfo("WOW!", "You won R2 384.00")
 
             def claims():
@@ -119,6 +130,8 @@ def lotto():
                                       bg="#f649a2").place(x=400, y=500)
 
         elif len(matching_numbers) == 5:
+            with open("Login_use.txt", 'a') as file:
+                file.write('Prize: R8584.00')
             messagebox.showinfo("OMG!!!", "You won R8584.00")
 
             def claims():
@@ -129,7 +142,9 @@ def lotto():
                                       bg="#f649a2").place(x=400, y=500)
 
         elif len(matching_numbers) == 6:
-            messagebox.showinfo("Congratulations Champ!!!!", "You won R10000000.00")
+            with open("Login_use.txt", 'a') as file:
+                file.write('Prize: R10 000 000.00')
+            messagebox.showinfo("Congratulations Champ!!!!", "You won R10 000 000.00")
 
             def claims():
                 window.destroy()
@@ -137,8 +152,6 @@ def lotto():
 
             claims_button = tk.Button(window, text="Claim Prize", command=claims, height=2, width=10,
                                       bg="#f649a2").place(x=400, y=500)
-
-            # file_info = import
     except ValueError:
         messagebox.showerror("Do you want to win??", "Then enter number!!")
 
@@ -146,7 +159,17 @@ def lotto():
 enter_button = tk.Button(window, text="Enter", command=lotto, height=2, width=10, bg="Green").place(x=260, y=500)
 
 
-def clear():
+# def clear():
+# clear_button = tk.Button(window, text="Clear", command=clear, height=2, width=10, bg="#0696e0").place(x=540, y=500)
+exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, bg="Red").place(x=780, y=30)
+
+
+def try_again():
+    numbers = []
+    while len(numbers) < 6:
+        num = random.randint(1, 49)
+        if num not in numbers:
+            numbers.append(num)
     first_number_entry.delete(0, 'end')
     second_number_entry.delete(0, 'end')
     third_number_entry.delete(0, 'end')
@@ -154,16 +177,7 @@ def clear():
     fifth_number_entry.delete(0, 'end')
     sixth_number_entry.config(state="normal")
     sixth_number_entry.delete(0, END)
-
-
-clear_button = tk.Button(window, text="Clear", command=clear, height=2, width=10, bg="#0696e0").place(x=540, y=500)
-exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, bg="Red").place(x=780, y=30)
-
-
-def try_again():
-    window.destroy()
-    import Login
-try_again_button = tk.Button(window, text="Try Again", command=try_again, height=2, width=10, bg="#cb2eba").place(x=10, y=30)
+try_again_button = tk.Button(window, text="Try Again", command=try_again, height=2, width=10, bg="#cb2eba").place(x=540, y=500)
 
 
 window.mainloop()
