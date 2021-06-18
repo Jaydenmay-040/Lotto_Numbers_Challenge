@@ -1,3 +1,4 @@
+import uuid
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
@@ -9,13 +10,16 @@ window = Tk()
 window.title("Lotto Machine: Jayden May")
 window.geometry("900x600")
 window.config(bg="yellow")
+#playsound('sound1.mp3')
 
 # Create a photo/image object of the image in the path
 img = PhotoImage(file="image1.png")
 Label(window, image=img, bg="yellow", width=370, height=125).place(x=265, y=10)
-
+player_id = str(uuid.uuid1())
+player_id = player_id[0:5]
 # DOB Heading
-label = Label(window, text="Welcome!", fg="black", bg="yellow", font=("Arial", 25, 'bold')).place(x=370, y=170)
+label = Label(window, text="Welcome "+player_id, fg="black", bg="yellow", font=("Arial", 25, 'bold')).place(x=330, y=170)
+
 
 # Entries
 number_label = Label(window, text="Enter a set of numbers ranging from 1-49:", bg="yellow", font=("Arial", 16)).place(x=240, y=240)
@@ -87,32 +91,59 @@ def lotto():
         elif len(matching_numbers) == 2:
             messagebox.showinfo("Well Done!", "You won R20.00")
 
+            def claims():
+                window.destroy()
+                import Claim
+
+            claims_button = tk.Button(window, text="Claim Prize", command=claims, height=2, width=10,
+                                      bg="#f649a2").place(x=400, y=500)
+
         elif len(matching_numbers) == 3:
             messagebox.showinfo("Well Done!!", "You won R100.50")
+
+            def claims():
+                window.destroy()
+                import Claim
+
+            claims_button = tk.Button(window, text="Claim Prize", command=claims, height=2, width=10,
+                                      bg="#f649a2").place(x=400, y=500)
 
         elif len(matching_numbers) == 4:
             messagebox.showinfo("WOW!", "You won R2 384.00")
 
+            def claims():
+                window.destroy()
+                import Claim
+
+            claims_button = tk.Button(window, text="Claim Prize", command=claims, height=2, width=10,
+                                      bg="#f649a2").place(x=400, y=500)
+
         elif len(matching_numbers) == 5:
             messagebox.showinfo("OMG!!!", "You won R8584.00")
 
+            def claims():
+                window.destroy()
+                import Claim
+
+            claims_button = tk.Button(window, text="Claim Prize", command=claims, height=2, width=10,
+                                      bg="#f649a2").place(x=400, y=500)
+
         elif len(matching_numbers) == 6:
             messagebox.showinfo("Congratulations Champ!!!!", "You won R10000000.00")
-            window.destroy()
-            import Lotto_prizes
 
+            def claims():
+                window.destroy()
+                import Claim
+
+            claims_button = tk.Button(window, text="Claim Prize", command=claims, height=2, width=10,
+                                      bg="#f649a2").place(x=400, y=500)
+
+            # file_info = import
     except ValueError:
         messagebox.showerror("Do you want to win??", "Then enter number!!")
 
 # Buttons
 enter_button = tk.Button(window, text="Enter", command=lotto, height=2, width=10, bg="Green").place(x=260, y=500)
-
-
-def claims():
-    window.destroy()
-    import Claim
-
-claims_button = tk.Button(window, text="Claim Prize", command=claims, height=2, width=10, bg="#f649a2").place(x=400, y=500)
 
 
 def clear():

@@ -53,12 +53,11 @@ def enter():
             raise ValueError
         elif last_name == '':
             raise ValueError
-        pos = first_name.find(" ")
-        surname = last_name[pos+1]
-        sliced = id_entry.get
-        id_sliced = sliced[slice(6, 10, 1)]
-        id_player = surname+first_name+id_sliced
-        print("Hello: ", id_player)
+        import Login_use
+        with open('Login_use.txt') as file_object:
+            file_object.write('Name: ')
+            # file_object.write('Surname: ' + last_name_entry.get())
+            # file_object.write('ID No.: ' + id_entry.get())
     except ValueError:
         messagebox.showerror(message='Please ensure that all fields are entered correctly')
 
@@ -68,12 +67,8 @@ exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, b
 
 
 def lotto_prizes():
-    pos = first_name_entry
-    surname = last_name_entry[pos + 1]
-    sliced = id_entry.get
-    id_sliced = sliced[slice(6, 10, 1)]
-    id_player = surname + first_name_entry + id_sliced
-    print("Hello: ", id_player)
+    window.destroy()
+    import Lotto_prizes
 
 prizes_button = tk.Button(window, text="Prizes", command=lotto_prizes, height=2, width=10, bg="#0696e0").place(x=780, y=30)
 

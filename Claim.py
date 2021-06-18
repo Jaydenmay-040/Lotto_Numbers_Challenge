@@ -18,19 +18,22 @@ label = Label(window, text="Enter your banking details", fg="black", bg="yellow"
 
 # Entries
 account_holder_name_entry = Entry(window)
-account_holder_name_entry.place(x=180, y=300)
+account_holder_name_entry.place(x=400, y=300)
 account_holder_name_label = Label(window, text="Account Holder Name", bg="yellow", font=("Arial", 13))
-account_holder_name_label.place(x=170, y=340)
+account_holder_name_label.place(x=170, y=300)
 account_number_entry = Entry(window)
-account_number_entry.place(x=400, y=300)
+account_number_entry.place(x=400, y=340)
 account_number_label = Label(window, text="Account Number", bg="yellow", font=("Arial", 13))
-account_number_label.place(x=415, y=340)
+account_number_label.place(x=170, y=340)
 variable = StringVar()
 variable.set('Select Bank')
 bank_opt = OptionMenu(window, variable, 'FNB', 'Capitec', 'Netbank', 'Standard Bank')
 bank_opt.place(x=630, y=300)
-# bank_label = Label(window, text="Select your Bank", bg="yellow", font=("Arial", 13))
-# bank_label.place(x=655, y=340)
+currency_entry = Entry(window)
+currency_entry.place(x=400, y=380)
+currency_label = Label(window, text="Enter currency code", bg="yellow", font=("Arial", 13))
+currency_label.place(x=170, y=380)
+
 
 
 # Function to tells if user is older enough to play
@@ -65,7 +68,6 @@ def enter():
                     raise ValueError
                 elif name_ent in list1:
                     raise ValueError
-                messagebox.showinfo(message='Details has been entered correctly ')
                 if number_ent == '':
                     raise ValueError
                 else:
@@ -85,7 +87,7 @@ def enter():
                 messagebox.showerror(message='Something went wrong! Please ensure that fields are entered correctly')
 
 # Buttons
-enter_button = tk.Button(window, text="Enter", command=enter, height=2, width=10).place(x=280, y=500)
-exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10).place(x=490, y=500)
+enter_button = tk.Button(window, text="Enter", command=enter, height=2, width=10, bg="Green").place(x=280, y=500)
+exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, bg="red").place(x=490, y=500)
 
 window.mainloop()

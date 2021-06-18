@@ -34,7 +34,7 @@ prize_zero = Label(window, text="R0", width=20, font=("Arial", 15, 'bold')).plac
 def back():
     window.destroy()
     import Login
-prizes_button = tk.Button(window, text="Back", command=back, height=2, width=10).place(x=80, y=530)
+prizes_button = tk.Button(window, text="Back", command=back, height=2, width=10, bg="red").place(x=80, y=530)
 
 window.mainloop()
 
