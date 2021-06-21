@@ -215,6 +215,7 @@ def lotto():
             if user_list == 0:
                 with open("Login_use.txt", 'a') as file:
                     file.write('Prize: R0' + '\n' + '\n')
+                playsound("Sad Trombone - Gaming Sound Effect (HD).mp3")
                 messagebox.showerror("Try again", "You have no matching numbers:(")
 
             if winnings == 0:
@@ -222,11 +223,13 @@ def lotto():
                     file.write('Prize: R0' + '\n' + '\n')
                 matched_label = Label(window, text="0", bg='yellow', width='10', font=("Arial", 13))
                 matched_label.place(x=450, y=420)
+                playsound("Sad Trombone - Gaming Sound Effect (HD).mp3")
                 messagebox.showerror("Try again", "You have no matching numbers:(")
 
             elif winnings == 1:
                 with open("Login_use.txt", 'a') as file:
                     file.write('Prize: R0' + '\n' + '\n')
+                playsound("Sad Trombone - Gaming Sound Effect (HD).mp3")
                 messagebox.showerror("Too bad", "You only have one matching number, better luck next time")
 
             elif winnings == 2:
