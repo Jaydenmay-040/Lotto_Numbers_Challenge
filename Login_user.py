@@ -235,6 +235,7 @@ def lotto():
             elif winnings == 2:
                 with open("Login_use.txt", 'a') as file:
                     file.write('Prize: R20.00' + '\n' + '\n')
+                playsoud("ka-ching sound effect.mp3")
                 messagebox.showinfo("Well Done!", "You won R20.00")
 
                 def claims():
@@ -247,6 +248,7 @@ def lotto():
             elif winnings == 3:
                 with open("Login_use.txt", 'a') as file:
                     file.write('Prize: R100.50' + '\n' + '\n')
+                playsoud("ka-ching sound effect.mp3")
                 messagebox.showinfo("Well Done!!", "You won R100.50")
 
                 def claims():
@@ -259,6 +261,7 @@ def lotto():
             elif winnings == 4:
                 with open("Login_use.txt", 'a') as file:
                     file.write('Prize: R2 384.00' + '\n' + '\n')
+                playsoud("ka-ching sound effect.mp3")
                 messagebox.showinfo("WOW!", "You won R2 384.00")
 
                 def claims():
@@ -271,6 +274,7 @@ def lotto():
             elif winnings == 5:
                 with open("Login_use.txt", 'a') as file:
                     file.write('Prize: R8584.00' + '\n' + '\n')
+                playsoud("ka-ching sound effect.mp3")
                 messagebox.showinfo("OMG!!!", "You won R8584.00")
 
                 def claims():
@@ -283,6 +287,7 @@ def lotto():
             elif winnings == 6:
                 with open("Login_use.txt", 'a') as file:
                     file.write('Prize: R10 000 000.00' + '\n' + '\n')
+                playsoud("ka-ching sound effect.mp3")
                 messagebox.showinfo("Congratulations Champ!!!!", "You won R10 000 000.00")
 
                 def claims():
