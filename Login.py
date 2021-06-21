@@ -35,7 +35,7 @@ id_label.place(x=250, y=360)
 
 # Function to tells if user is older enough to play
 def enter():
-    with open("Login_use.txt", "a+") as f:
+    with open("Login.txt", "a+") as f:
         f.write('Name: ' + first_name_entry.get() + '\n')
         f.write('Surname: ' + last_name_entry.get() + '\n')
         f.write('ID No.: ' + id_entry.get() + '\n')
@@ -62,6 +62,7 @@ def enter():
     except ValueError:
         messagebox.showerror(message='Please ensure that all fields are entered correctly')
 
+
 # Buttons
 enter_button = tk.Button(window, text="Enter", command=enter, height=2, width=10, bg="green").place(x=280, y=500)
 exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, bg="red").place(x=490, y=500)
@@ -70,6 +71,7 @@ exit_button = tk.Button(window, text="Exit", command=exit, height=2, width=10, b
 def lotto_prizes():
     window.destroy()
     import Lotto_prizes
+
 
 prizes_button = tk.Button(window, text="Prizes", command=lotto_prizes, height=2, width=10, bg="#0696e0").place(x=780, y=30)
 
